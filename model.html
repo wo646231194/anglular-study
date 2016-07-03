@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模型</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+    <style>
+        input.ng-invalid{
+            background-color: #ff4500;
+        }
+    </style>
+</head>
+<body>
+<div ng-app="myApp">
+    <h4>ng-model 指令用于绑定应用程序数据到 HTML 控制器(input, select, textarea)的值。</h4>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        名字: <input ng-model="name">
+        <h4>你输入了: {{name}}</h4>
+    </div>
+
+    <h4>验证用户输入</h4>
+    <form name="myForm">
+        邮箱:
+        <input type="email" name="myAddress" ng-model="text">
+        <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+        <h4>状态</h4>
+        <label>$valid</label> {{myForm.myAddress.$valid}}
+        <label>$dirty</label> {{myForm.myAddress.$dirty}}
+        <label>$touched</label> {{myForm.myAddress.$touched}}
+        <label>$error</label> {{myForm.myAddress.$error}}
+    </form>
+
+    <h4>ng-model 指令根据表单域的状态添加/移除以下类：</h4>
+    <p>
+        ng-empty
+        ng-not-empty
+        ng-touched
+        ng-untouched
+        ng-valid
+        ng-invalid
+        ng-dirty
+        ng-pending
+        ng-pristine
+    </p>
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.name = "李宇春";
+    });
+</script>
+</body>
+</html>
