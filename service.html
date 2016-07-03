@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>服务Service</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+<h1>什么是服务？</h1>
+<p>
+    在 AngularJS 中，服务是一个函数或对象，可在你的 AngularJS 应用中使用。
+    AngularJS 内建了30 多个服务。
+    有个 $location 服务，它可以返回当前页面的 URL 地址。
+</p>
+
+<div ng-app="myApp">
+    <div ng-controller="url">
+        <p>当前URL:{{myUrl}}</p>
+    </div>
+    <div ng-controller="http">
+        <h2>http:service</h2>
+        <p>{{base}}</p>
+    </div>
+    <div ng-controller="timeout">
+        <h2>timeout:消息</h2>
+        <p>{{hello}}</p>
+    </div>
+    <div ng-controller="interval">
+        <h2>interval:时间</h2>
+        <p>{{time}}</p>
+    </div>
+    <div ng-controller="service">
+        <h2>service:十进制转十六进制</h2>
+        <p>{{num|uppercase}}</p>
+    </div>
+    <div ng-controller="filter">
+        <h2>service:十进制转十六进制</h2>
+        <input type="text" model = 'num'/>
+        <p>{{num|CHEX}}</p>
+    </div>
+</div>
+
+<script src="service.js"></script>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('url',function ($scope,$location) {
+        $scope.myUrl = $location.absUrl();
+    });
+    app.controller('http',function ($scope,$http) {
+        $http.get('service.js').then(function ($response) {
+            $scope.base = $response.data;
+        })
+    });
+    app.controller('timeout',function ($scope,$timeout) {
+        $scope.hello = '你好';
+        $timeout(function () {
+            $scope.hello = '已登录';
+        },2000);
+    });
+    app.controller('interval',function ($scope,$interval) {
+        $scope.time = new Date().toLocaleTimeString();
+        $interval(function () {
+            $scope.time = new Date().toLocaleTimeString();
+        },1000);
+    });
+    app.service('hex',function () {
+        this.c = function (x) {
+            return x.toString(16);
+        }
+    });
+    app.controller('service',function ($scope,hex) {
+        $scope.num = hex.c(254);
+    });
+    app.filter('CHEX',['hex',function (hex) {
+        return function (x) {
+            return hex.c(x);
+        }
+    }]);
+    app.controller('filter',function ($scope) {
+        $scope.num = 15;
+    });
+</script>
+</body>
+</html>
