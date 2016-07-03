@@ -11,15 +11,20 @@
     <h1>Hello {{name}}</h1>
 </div>
 
-<div ng-init="firstname='胡洋爱马燕'">
+<div ng-init="firstname='李宇春爱鹿晗'">
     <p>姓名为：<span ng-bind="firstname"></span></p>
 </div>
 
-<div data-ng-app="" data-ng-init="firstname='马燕爱胡洋'">
+<div data-ng-app="" data-ng-init="firstname='鹿晗爱李宇春'">
     <p>姓名为 <span data-ng-bind="firstname"></span></p>
 </div>
 
-
+<div>
+    <p>表达式 5+5 = {{5+5}}</p>
+    <p>表达式 李宇春+鹿晗 = {{"李宇春"+"鹿晗"}}</p>
+    <p>表达式 null+鹿晗 = {{null+"鹿晗"}}</p>
+    <p>表达式 null+5 = {{null+5}}</p>
+</div>
 
 </body>
 </html>
