@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指令</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="">
+    <h4>
+        AngularJS 指令是扩展的 HTML 属性，带有前缀 ng-。
+    </h4>
+    <p>ng-app 指令初始化一个 AngularJS 应用程序。</p>
+    <p>ng-init 指令初始化应用程序数据。</p>
+    <p>ng-model 指令把元素值（比如输入域的值）绑定到应用程序。</p>
+
+    <div ng-init="name='李宇春'">
+        <h4>数据绑定</h4>
+        <input type="text" ng-model="name" placeholder="输入姓名"/>
+        <p>{{name}}</p>
+    </div>
+
+    <div ng-init="a1=2;a2=3">
+        <h4>乘法计算器</h4>
+        <input type="number" ng-model="a1"/>*<input type="number" ng-model="a2"/>
+        ={{a1*a2}}
+    </div>
+
+    <div ng-init="
+    names=[
+        {name:'李宇春',label:'歌手'},
+        {name:'鹿晗',label:'演员'},
+        {name:'邓超',label:'逗逼'}
+    ]">
+        <h4>ng-repeat循环</h4>
+        <ul>
+            <li ng-repeat="x in names">
+                {{x.name+'是'+x.label}}
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
