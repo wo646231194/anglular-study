@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>expression 表达式</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+
+<h2>AngularJS 表达式写在双大括号内：{{ expression }}</h2>
+<h2>AngularJS 表达式把数据绑定到 HTML，这与 ng-bind 指令有异曲同工之妙。</h2>
+
+<div ng-app="">
+    <div >
+        <p> 5+5 = {{5+5}} </p>
+    </div>
+
+    <div >
+        <p>表达式 1.1*2.3 = {{1.1*2.3}}</p>
+    </div>
+
+    <div ng-init="a1 = 1.1;a2 = 2.3">
+        <p>ng-bind 1.1*2.3 = <span ng-bind="a1*a2"></span></p>
+    </div>
+
+    <div ng-init="firstname='李';lastname='宇春'">
+        <p>表达式  姓名：  {{firstname+lastname}}</p>
+    </div>
+
+    <div ng-init="firstname='李';lastname='宇春'">
+        <p>ng-bind 姓名：  <span data-ng-bind="firstname+lastname"></span> </p>
+    </div>
+
+    <div ng-init="li = {firstname:'李',lastname:'宇春'}">
+        <p>对象+表达式  姓名：  {{li.firstname+li.lastname}}</p>
+    </div>
+
+    <div ng-init="li = {firstname:'李',lastname:'宇春'}">
+        <p>对象+ng-bind 姓名：  <span data-ng-bind="li.firstname+li.lastname"></span> </p>
+    </div>
+
+    <div ng-init="point=[1,2,3,4]">
+        <p>第三个值为： {{point[3-1]}}</p>
+    </div>
+
+    <div ng-init="point=[1,2,3,4]">
+        <p>第三个值为： <span ng-bind="point[3-1]"></span></p>
+    </div>
+</div>
+
+</body>
+</html>
