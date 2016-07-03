@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module Controller</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    名: <input type="text" ng-model="firstName"><br>
+    姓: <input type="text" ng-model="lastName"><br>
+    <br>
+    姓名: {{firstName|uppercase}} {{lastName|lowercase}}
+
+    <br/>
+    <input type="number" ng-model="quantity">
+    <input type="number" ng-model="price">
+    <p>总价 = {{ (quantity * price) | currency }}</p>
+
+    <div ng-init="
+    names=[
+        {name:'李宇春',label:'歌手'},
+        {name:'鹿晗',label:'演员'},
+        {name:'邓超',label:'逗逼'}
+    ]">
+        <h4>ng-repeat循环</h4>
+        <p><input type="text" ng-model="test"></p>
+        <ul>
+            <li ng-repeat="x in names | filter:test | orderBy:'name'">
+                {{x.name+'是'+x.label}}
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.firstName= "Li";
+        $scope.lastName= "YuChun";
+    });
+</script>
+
+</body>
+</html>
