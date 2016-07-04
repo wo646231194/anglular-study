@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Http请求服务器数据</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+<div data-ng-app="myApp">
+    <ul ng-controller="myCtrl">
+        <li ng-repeat="x in names">
+            {{x.Name}}-----------{{x.City}}------------{{x.Country}}
+        </li>
+    </ul>
+</div>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myCtrl',function ($scope,$http) {
+        $http.get("data.json").success(function (response) {
+            $scope.names = response.records;
+        });
+    });
+</script>
+</body>
+</html>
