@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table表格</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+    <style>
+        table,th,td{
+            padding: 5px;
+            border-collapse: collapse;
+        }
+        table tr:nth-child(odd){
+            background-color: #DCDCDC;
+        }
+        table tr:nth-child(even){
+            background-color: #F0F0F0;
+        }
+    </style>
+</head>
+<body>
+<div data-ng-app="myApp" ng-controller="myCtrl">
+    <table>
+        <thead>
+            <th>序号</th>
+            <th>名称</th>
+            <th>城市</th>
+            <th>国家</th>
+        </thead>
+        <tr ng-repeat="x in names | orderBy: 'Country'">
+            <td ng-if="$odd" style="color:#00BF00">{{$index + 1}}</td>
+            <td ng-if="$even" style="color:#ff4334">{{$index + 1}}</td>
+            <td>{{x.Name}}</td>
+            <td>{{x.City}}</td>
+            <td>{{x.Country | uppercase}}</td>
+        </tr>
+    </table>
+</div>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myCtrl',function ($scope,$http) {
+        $http.get("data.json").success(function (response) {
+            $scope.names = response.records;
+        });
+    });
+</script>
+</body>
+</html>
