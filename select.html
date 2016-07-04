@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select选择</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+<div data-ng-app="myApp" ng-controller="myCtrl">
+    <select ng-model = "selectname" ng-options = "x.Name for x in names">
+    </select>
+    <h4>您选择的是：{{selectname.Name}}-------{{selectname.City}}-----------{{selectname.Country}}</h4>
+    <select ng-model="selectedSite" ng-options="x for (x, y) in sites">
+    </select>
+    <h4>你选择的值是: {{selectedSite}}</h4>
+    <select ng-model="selectedCar" ng-options="y.brand for (x, y) in cars">
+    </select>
+    <h4>你选择的值是: {{selectedCar}}</h4>
+</div>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myCtrl',function ($scope,$http) {
+        $http.get('data.json').success(function (response) {
+            $scope.names = response.records;
+        });
+        $scope.sites = {
+            site01 : "谷歌",
+            site02 : "百度",
+            site03 : "阿里巴巴"
+        };
+        $scope.cars = {
+            car01 : {brand : "Ford", model : "Mustang", color : "red"},
+            car02 : {brand : "Fiat", model : "500", color : "white"},
+            car03 : {brand : "Volvo", model : "XC90", color : "black"}
+        };
+    })
+</script>
+</body>
+</html>
