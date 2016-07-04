@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM元素</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+<div data-ng-app="" ng-init="mySwitch=true">
+    <p>
+        <button ng-disabled="mySwitch">点我</button>
+    </p>
+    <p>
+        <input type="checkbox" ng-model="mySwitch">按钮
+    </p>
+    <p>
+        {{mySwitch}}
+    </p>
+    <p ng-show="true">我是可见的</p>
+    <p ng-show="false">我是不可见的</p>
+    <p ng-show="mySwitch">出现</p>
+    <p ng-hide="true">我是不可见的</p>
+    <p ng-hide="false">我是可见的</p>
+    <p ng-hide="mySwitch">出现</p>
+</div>
+</body>
+</html>
