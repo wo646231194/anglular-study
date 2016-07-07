@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模块 module</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+<div data-ng-app="myApp">
+    <!--添加控制器-->
+    <ul ng-controller="myCtrl">
+        <li ng-repeat="x in names">
+            {{x.Name}}-----------{{x.City}}------------{{x.Country}}
+        </li>
+    </ul>
+    <!--添加指令-->
+    <div test-directive></div>
+</div>
+<script>
+    var app = angular.module('myApp',[]);//创建模块
+    //添加控制器
+    app.controller('myCtrl',function ($scope,$http) {
+        $http.get("data.json").success(function (response) {
+            $scope.names = response.records;
+        });
+    });
+    //添加指令
+    app.directive("testDirective",function () {
+        return{
+            template: "<p>创建的指令</p>"
+        }
+    });
+</script>
+</body>
+</html>
