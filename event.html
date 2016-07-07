@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件 click toggle</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="click">
+        <button ng-click="count=count+1">加1</button>
+        <button ng-click="count=count-1">减1</button>
+        <p>{{count}}</p>
+    </div>
+    <div ng-controller="toggle">
+        <button ng-click="toggle()">隐藏/显示</button>
+        <p ng-hide="status">姓名：{{name}}</p>
+    </div>
+</div>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('click',function ($scope) {
+        $scope.count = 0;
+    });
+    app.controller('toggle',function ($scope) {
+        $scope.name = "李宇春";
+        $scope.status = false;
+        $scope.toggle = function () {
+            $scope.status = !$scope.status;
+        };
+    })
+</script>
+</body>
+</html>
