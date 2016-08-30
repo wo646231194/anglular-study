@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular表单</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="person">
+        <form novalidate>
+            firstName:<br>
+            <input type="text" ng-model="user.firstName"><br>
+            lastName:<br>
+            <input type="text" ng-model="user.lastName"><br>
+            <button ng-click="reset()">重置</button>
+        </form>
+        <p>form = {{user}}</p>
+        <p>master = {{master}}</p>
+    </div>
+</div>
+<script>
+    var app = angular.module("myApp",[]);
+    app.controller("person",function ($scope) {
+        $scope.master={firstName:"howie", lastName:"fly"};
+        $scope.reset = function () {
+            $scope.user = angular.copy($scope.master);
+        }
+        $scope.reset();
+    })
+</script>
+</body>
+</html>
