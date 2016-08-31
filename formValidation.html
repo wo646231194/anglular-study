@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular 表单验证</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="formvalid">
+        <form name="register" novalidate>
+            <p>
+                用户名：<br>
+                <input type="text" name="user" ng-model="user" required>
+                <span style="color:red" ng-show="register.user.$dirty && register.user.$invalid">
+                    <span ng-show="register.user.$error.required">用户名是必须的</span>
+                </span>
+            </p>
+            <p>
+                邮箱：<br>
+                <input type="email" name="email" ng-model="email" required>
+                <span style="color:red" ng-show="register.email.$dirty && register.email.$invalid">
+                    <span ng-show="register.email.$error.required">邮箱是必须的</span>
+                    <span ng-show="register.email.$error.email">邮箱格式不正确</span>
+                </span>
+            </p>
+            <p>
+                电话：<br>
+                <input type="tel" name="tel" ng-model="tel" required>
+                <span style="color:red" ng-show="register.tel.$dirty && register.tel.$invalid">
+                    <span ng-show="register.tel.$error.required">电话是必须的</span>
+                    <span ng-show="register.tel.$error.tel">电话格式不正确</span>
+                </span>
+            </p>
+            <p>
+                <input type="submit" ng-disabled="register.user.$dirty && register.user.$invalid
+                || register.email.$dirty && register.email.$invalid">
+            </p>
+        </form>
+    </div>
+</div>
+<script>
+    var app = angular.module("myApp",[]);
+    app.controller("formvalid",function ($scope) {
+        $scope.user = "howie";
+        $scope.email = "hug@nwu.edu.cn"
+    })
+</script>
+</body>
+</html>
